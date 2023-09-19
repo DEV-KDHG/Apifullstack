@@ -6,7 +6,7 @@ import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "CLIENTE")
+@Table(name = "Cliente")
 @Entity
 
 public class Modelo {
