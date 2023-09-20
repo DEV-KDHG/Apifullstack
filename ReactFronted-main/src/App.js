@@ -17,10 +17,10 @@ function App() {
 
             <Route path="/clientes" element={<ListClienteComponentes />} />
             <Route path="/add-cliente" element={<AddClienteComponets />} />
+            <Route path="/edite-cliente/:id" element={<AddClienteComponets />} />
           </Routes>
         </div>
 
-        <FooterComponent />
       </BrowserRouter>
     </>
   );
