@@ -11,14 +11,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin (origins = "http://localhost:3000")
+@CrossOrigin (origins = "http://localhost:3002")
 @RestController
 @RequestMapping("/api/v1")
 public class ClientControler {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @GetMapping("clientes/enviar")
+    @GetMapping("/clientes")
     public List<Modelo> Listar(){
         return clienteRepository.findAll();
     }
@@ -43,15 +43,15 @@ public class ClientControler {
 
         modelo.setNombre(modelorequest.getNombre());
         modelo.setEmail(modelorequest.getEmail());
-     Modelo clienteac= clienteRepository.save(modelo);
-return  ResponseEntity.ok(clienteac);
+        Modelo clienteac= clienteRepository.save(modelo);
+        return  ResponseEntity.ok(clienteac);
 
     }
 
     @DeleteMapping("/clientes/eliminar/{id}")
 
 
-public  ResponseEntity<Map<String,Boolean>> eliminarCliente(@PathVariable Long id){
+    public  ResponseEntity<Map<String,Boolean>> eliminarCliente(@PathVariable Long id){
         Modelo modelo = clienteRepository.findById(id)
                 .orElseThrow(() -> new ResoursesNotFound("El cliente no tiene id " + id));
 

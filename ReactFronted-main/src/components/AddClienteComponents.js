@@ -1,12 +1,27 @@
 import React, { useState } from "react";
+import ClienteService from "../service/ClienteService";
+import { useNavigate } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 
 const AddClienteComponents = () => {
   const [nombre, setNombre] = useState("");
   const [email, setemail] = useState("");
-
+const navigate =useNavigate();
   const SaveCliente = (e) => {
+    e.preventDefault();
     const cliente = { nombre, email };
-    console.log(cliente);
+    ClienteService.createCliente(cliente).then((response) => {
+      console.log(response.data);
+ navigate("/clientes");
+ 
+ 
+    }).catch(error=> {
+      console.log(error)
+    });
+
+
+
   };
   return (
     <>
@@ -39,7 +54,16 @@ const AddClienteComponents = () => {
                     onChange={(e) => setemail(e.target.value)}
                   ></input>
                 </div>
-                <button className="btn btn-success" onClick={(e) => SaveCliente}> Guardar</button>
+                <button className="btn btn-success"onClick={(e) => SaveCliente(e)}>
+                  {" "}
+                  Guardar
+                </button>
+
+
+              <br></br>
+            <br></br>
+<Link to ="/clientes" className="btn btn-danger"> Cancelar</Link>
+
               </form>
             </div>
           </div>
@@ -48,5 +72,4 @@ const AddClienteComponents = () => {
     </>
   );
 };
-
 export default AddClienteComponents;
